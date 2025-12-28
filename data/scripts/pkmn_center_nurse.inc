@@ -4,7 +4,7 @@ Common_EventScript_PkmnCenterNurse::
 	setvar VAR_0x8004, 0
 	specialvar VAR_RESULT, CountPlayerTrainerStars
 	goto_if_eq VAR_RESULT, 4, EventScript_PkmnCenterNurse_GoldCardHealPkmn
-	got EventScript_PkmnCenterNurse_HealPkmn
+	goto EventScript_PkmnCenterNurse_HealPkmn
 	end
 
 EventScript_PkmnCenterNurse_Goodbye::
