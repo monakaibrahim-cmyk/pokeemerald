@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [ very-easy-mode ]
+    branches: [very-easy-mode]
   pull_request:
-
+    branches: [very-easy-mode]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -67,3 +67,9 @@ jobs:
           cwd: "./symbols"
           add: "*.sym"
           message: ${{ env.SYMBOLS_COMMIT_MSG }}
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          path: |
+            *.gba
