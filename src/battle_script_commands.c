@@ -10029,7 +10029,7 @@ static void Cmd_handleballthrow(void)
 
             for (shakes = 0; shakes < BALL_3_SHAKES_SUCCESS && Random() < odds; shakes++);
 
-            if (gLastUsedItem == ITEM_MASTER_BALL)
+            if (gLastUsedItem == ITEM_MASTER_BALL || gLastUsedItem == ITEM_POKE_BALL || gLastUsedItem == ITEM_GREAT_BALL || gLastUsedItem == ITEM_ULTRA_BALL)
                 shakes = BALL_3_SHAKES_SUCCESS; // why calculate the shakes before that check?
 
             BtlController_EmitBallThrowAnim(B_COMM_TO_CONTROLLER, shakes);
