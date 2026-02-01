@@ -208,6 +208,7 @@ extern const u8 gMenuText_Toss[];
 extern const u8 gMenuText_Give[];
 extern const u8 gMenuText_Give2[];
 extern const u8 gMenuText_Register[];
+extern const u8 gMenuText_Swap[];
 extern const u8 gMenuText_Check[];
 extern const u8 gMenuText_Walk[];
 extern const u8 gMenuText_Deselect[];
@@ -933,6 +934,7 @@ extern const u8 gText_BootedUpHM[];
 extern const u8 gText_BootedUpTM[];
 extern const u8 gText_TMHMContainedVar1[];
 extern const u8 gText_PlayerUsedVar2[];
+extern const u8 gText_PlayerUsedRepel[];
 extern const u8 gText_RepelEffectsLingered[];
 extern const u8 gText_UsedVar2WildLured[];
 extern const u8 gText_UsedVar2WildRepelled[];
@@ -1017,6 +1019,7 @@ extern const u8 gText_ThankYouIllSendItHome[];
 extern const u8 gText_ThanksIllSendItHome[];
 extern const u8 gText_SpaceForVar1Full[];
 extern const u8 gText_ThrowInPremierBall[];
+extern const u8 gText_ThrowInPremierBalls[];
 extern const u8 gText_ShopBuy[];
 extern const u8 gText_ShopSell[];
 extern const u8 gText_ShopQuit[];
@@ -3025,5 +3028,9 @@ extern const u8 gText_YourName[];
 extern const u8 gText_BoxName[];
 extern const u8 gText_PkmnsNickname[];
 extern const u8 gText_TellHimTheWords[];
+
+extern const u8 gTextNatureDown[];
+extern const u8 gTextNatureUp[];
+extern const u8 gTextNatureNeutral[];
 
 #endif // GUARD_STRINGS_H

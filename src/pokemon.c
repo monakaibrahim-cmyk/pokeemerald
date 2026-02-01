@@ -2262,35 +2262,117 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     SetBoxMonData(boxMon, MON_DATA_POKEBALL, &value);
     SetBoxMonData(boxMon, MON_DATA_OT_GENDER, &gSaveBlock2Ptr->playerGender);
 
-    if (fixedIV < USE_RANDOM_IVS)
+    if (fixedIV == 0)
     {
-        SetBoxMonData(boxMon, MON_DATA_HP_IV, &fixedIV);
-        SetBoxMonData(boxMon, MON_DATA_ATK_IV, &fixedIV);
-        SetBoxMonData(boxMon, MON_DATA_DEF_IV, &fixedIV);
-        SetBoxMonData(boxMon, MON_DATA_SPEED_IV, &fixedIV);
-        SetBoxMonData(boxMon, MON_DATA_SPATK_IV, &fixedIV);
-        SetBoxMonData(boxMon, MON_DATA_SPDEF_IV, &fixedIV);
+        u32 iv;
+        iv = 0;
+
+        SetBoxMonData(boxMon, MON_DATA_HP_IV, &iv);
+        SetBoxMonData(boxMon, MON_DATA_ATK_IV, &iv);
+        SetBoxMonData(boxMon, MON_DATA_DEF_IV, &iv);
+        SetBoxMonData(boxMon, MON_DATA_SPEED_IV, &iv);
+        SetBoxMonData(boxMon, MON_DATA_SPATK_IV, &iv);
+        SetBoxMonData(boxMon, MON_DATA_SPDEF_IV, &iv);
+    }
+    else if (fixedIV < USE_RANDOM_IVS)
+    {
+        u32 iv30;
+        u32 iv31;
+        int ivRand;
+
+        iv30 = 30;
+        iv31 = 31;
+        ivRand = (Random() % 2);
+        
+        if (ivRand == 1)
+            SetBoxMonData(boxMon, MON_DATA_HP_IV, &iv30);
+        else if (ivRand == 0)
+            SetBoxMonData(boxMon, MON_DATA_HP_IV, &iv31);
+
+        ivRand = (Random() % 2);
+
+        if (ivRand == 1)
+            SetBoxMonData(boxMon, MON_DATA_ATK_IV, &iv30);
+        else if (ivRand == 0)
+            SetBoxMonData(boxMon, MON_DATA_ATK_IV, &iv31);
+        
+        ivRand = (Random() % 2);
+
+        if (ivRand == 1)
+            SetBoxMonData(boxMon, MON_DATA_DEF_IV, &iv30);
+        else if (ivRand == 0)
+            SetBoxMonData(boxMon, MON_DATA_DEF_IV, &iv31);
+        
+        ivRand = (Random() % 2);
+
+        if (ivRand == 1)
+            SetBoxMonData(boxMon, MON_DATA_SPEED_IV, &iv30);
+        else if (ivRand == 0)
+            SetBoxMonData(boxMon, MON_DATA_SPEED_IV, &iv31);
+        
+        ivRand = (Random() % 2);
+
+        if (ivRand == 1)
+            SetBoxMonData(boxMon, MON_DATA_SPATK_IV, &iv30);
+        else if (ivRand == 0)
+            SetBoxMonData(boxMon, MON_DATA_SPATK_IV, &iv31);
+        
+        ivRand = (Random() % 2);
+
+        if (ivRand == 1)
+            SetBoxMonData(boxMon, MON_DATA_SPDEF_IV, &iv30);
+        else if (ivRand == 0)
+            SetBoxMonData(boxMon, MON_DATA_SPDEF_IV, &iv31);
     }
     else
     {
-        u32 iv;
-        value = Random();
+        u32 iv30;
+        u32 iv31;
+        int ivRand;
 
-        iv = value & MAX_IV_MASK;
-        SetBoxMonData(boxMon, MON_DATA_HP_IV, &iv);
-        iv = (value & (MAX_IV_MASK << 5)) >> 5;
-        SetBoxMonData(boxMon, MON_DATA_ATK_IV, &iv);
-        iv = (value & (MAX_IV_MASK << 10)) >> 10;
-        SetBoxMonData(boxMon, MON_DATA_DEF_IV, &iv);
+        iv30 = 30;
+        iv31 = 31;
+        ivRand = (Random() % 2);
+        
+        if (ivRand == 1)
+            SetBoxMonData(boxMon, MON_DATA_HP_IV, &iv30);
+        else if (ivRand == 0)
+            SetBoxMonData(boxMon, MON_DATA_HP_IV, &iv31);
 
-        value = Random();
+        ivRand = (Random() % 2);
 
-        iv = value & MAX_IV_MASK;
-        SetBoxMonData(boxMon, MON_DATA_SPEED_IV, &iv);
-        iv = (value & (MAX_IV_MASK << 5)) >> 5;
-        SetBoxMonData(boxMon, MON_DATA_SPATK_IV, &iv);
-        iv = (value & (MAX_IV_MASK << 10)) >> 10;
-        SetBoxMonData(boxMon, MON_DATA_SPDEF_IV, &iv);
+        if (ivRand == 1)
+            SetBoxMonData(boxMon, MON_DATA_ATK_IV, &iv30);
+        else if (ivRand == 0)
+            SetBoxMonData(boxMon, MON_DATA_ATK_IV, &iv31);
+        
+        ivRand = (Random() % 2);
+
+        if (ivRand == 1)
+            SetBoxMonData(boxMon, MON_DATA_DEF_IV, &iv30);
+        else if (ivRand == 0)
+            SetBoxMonData(boxMon, MON_DATA_DEF_IV, &iv31);
+        
+        ivRand = (Random() % 2);
+
+        if (ivRand == 1)
+            SetBoxMonData(boxMon, MON_DATA_SPEED_IV, &iv30);
+        else if (ivRand == 0)
+            SetBoxMonData(boxMon, MON_DATA_SPEED_IV, &iv31);
+        
+        ivRand = (Random() % 2);
+
+        if (ivRand == 1)
+            SetBoxMonData(boxMon, MON_DATA_SPATK_IV, &iv30);
+        else if (ivRand == 0)
+            SetBoxMonData(boxMon, MON_DATA_SPATK_IV, &iv31);
+        
+        ivRand = (Random() % 2);
+
+        if (ivRand == 1)
+            SetBoxMonData(boxMon, MON_DATA_SPDEF_IV, &iv30);
+        else if (ivRand == 0)
+            SetBoxMonData(boxMon, MON_DATA_SPDEF_IV, &iv31);
     }
 
     if (gSpeciesInfo[species].abilities[1])
@@ -5536,6 +5618,14 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem)
                 if (gEvolutionTable[species][i].param <= level)
                     targetSpecies = gEvolutionTable[species][i].targetSpecies;
                 break;
+            case EVO_LEVEL_ITEM:
+                if (gEvolutionTable[species][i].param == heldItem)
+                {
+                    heldItem = ITEM_NONE;
+                    SetMonData(mon, MON_DATA_HELD_ITEM, &heldItem);
+                    targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                }
+                break;
             case EVO_LEVEL_ATK_GT_DEF:
                 if (gEvolutionTable[species][i].param <= level)
                     if (GetMonData(mon, MON_DATA_ATK, 0) > GetMonData(mon, MON_DATA_DEF, 0))
@@ -5577,14 +5667,6 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem)
             {
             case EVO_TRADE:
                 targetSpecies = gEvolutionTable[species][i].targetSpecies;
-                break;
-            case EVO_TRADE_ITEM:
-                if (gEvolutionTable[species][i].param == heldItem)
-                {
-                    heldItem = ITEM_NONE;
-                    SetMonData(mon, MON_DATA_HELD_ITEM, &heldItem);
-                    targetSpecies = gEvolutionTable[species][i].targetSpecies;
-                }
                 break;
             }
         }

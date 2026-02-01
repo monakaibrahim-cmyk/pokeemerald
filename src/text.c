@@ -320,28 +320,65 @@ void RunTextPrinters(void)
 {
     int i;
 
-    if (!gDisableTextPrinters)
+    // if (!gDisableTextPrinters)
+    // {
+    //     for (i = 0; i < WINDOWS_MAX; ++i)
+    //     {
+    //         if (sTextPrinters[i].active)
+    //         {
+    //             u16 renderCmd = RenderFont(&sTextPrinters[i]);
+    //             switch (renderCmd)
+    //             {
+    //             case RENDER_PRINT:
+    //                 CopyWindowToVram(sTextPrinters[i].printerTemplate.windowId, COPYWIN_GFX);
+    //             case RENDER_UPDATE:
+    //                 if (sTextPrinters[i].callback != NULL)
+    //                     sTextPrinters[i].callback(&sTextPrinters[i].printerTemplate, renderCmd);
+    //                 break;
+    //             case RENDER_FINISH:
+    //                 sTextPrinters[i].active = FALSE;
+    //                 break;
+    //             }
+    //         }
+    //     }
+    // }
+
+    bool32 isInstantText = true;
+
+    do
     {
-        for (i = 0; i < WINDOWS_MAX; ++i)
+        int numEmpty = 0;
+        if (gDisableTextPrinters == 0)
         {
-            if (sTextPrinters[i].active)
+            for (i = 0; i < 0x20; ++i)
             {
-                u16 renderCmd = RenderFont(&sTextPrinters[i]);
-                switch (renderCmd)
+                if (sTextPrinters[i].active)
                 {
-                case RENDER_PRINT:
-                    CopyWindowToVram(sTextPrinters[i].printerTemplate.windowId, COPYWIN_GFX);
-                case RENDER_UPDATE:
-                    if (sTextPrinters[i].callback != NULL)
-                        sTextPrinters[i].callback(&sTextPrinters[i].printerTemplate, renderCmd);
-                    break;
-                case RENDER_FINISH:
-                    sTextPrinters[i].active = FALSE;
-                    break;
+                    u16 renderCmd = RenderFont(&sTextPrinters[i]);
+                    switch (renderCmd)
+                    {
+                    case RENDER_PRINT:
+                        CopyWindowToVram(sTextPrinters[i].printerTemplate.windowId, COPYWIN_GFX);
+                        if (sTextPrinters[i].callback != NULL)
+                            sTextPrinters[i].callback(&sTextPrinters[i].printerTemplate, renderCmd);
+                        break;
+                    case RENDER_UPDATE:
+                        if (sTextPrinters[i].callback != NULL)
+                            sTextPrinters[i].callback(&sTextPrinters[i].printerTemplate, renderCmd);
+                        isInstantText = FALSE;
+                        break;
+                    case RENDER_FINISH:
+                        sTextPrinters[i].active = FALSE;
+                        break;
+                    }
                 }
+                else
+                    numEmpty++;
             }
+            if (numEmpty == 0x20)
+                return;
         }
-    }
+    } while(isInstantText);
 }
 
 bool16 IsTextPrinterActive(u8 id)
